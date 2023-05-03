@@ -9,3 +9,5 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
   NewCops: enable
+Style/Documentation:
+  Enabled: False

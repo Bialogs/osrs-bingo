@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_503_013_520) do
+ActiveRecord::Schema[7.0].define(version: 20_230_503_021_824) do
   create_table 'action_text_rich_texts', force: :cascade do |t|
     t.string 'name', null: false
     t.text 'body'
@@ -52,10 +52,36 @@ ActiveRecord::Schema[7.0].define(version: 20_230_503_013_520) do
     t.index %w[blob_id variation_digest], name: 'index_active_storage_variant_records_uniqueness', unique: true
   end
 
+  create_table 'challenges', force: :cascade do |t|
+    t.integer 'points'
+    t.string 'title'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
+  create_table 'games', force: :cascade do |t|
+    t.string 'title'
+    t.string 'discord_url'
+    t.string 'video_url'
+    t.string 'twitter_url'
+    t.integer 'teams'
+    t.integer 'players_per_team'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.datetime 'start'
+    t.datetime 'end'
+  end
+
   create_table 'rules', force: :cascade do |t|
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.text 'content'
+  end
+
+  create_table 'teams', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
   add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
