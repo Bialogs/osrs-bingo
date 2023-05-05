@@ -1,0 +1,6 @@
+<%- if Current.user %>
+  <p>Hi <%= Current.user.first_name %></p>
+  <%= link_to "Log Out", log_out_path %>
+<%- else %>
+  <%= button_to "Sign In", "/auth/google_oidc", data: { turbo: false } %>
+<%- end %>
