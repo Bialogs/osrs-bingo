@@ -6,19 +6,29 @@ class Game < ApplicationRecord
   validate :teams, :players_per_team, numericality: { greater_than_or_equal_to: 1 }
 
   validate :instance_is_singleton, :order_of_start_and_stop_date
-end
 
-after_commit { Rails.cache.delete('game_instance') }
+  with_options dependent: :destroy do
+    has_many :challenges, inverse_of: :game, foreign_key: 'game_id'
+    has_many :teams
+  end
 
-def self.instance
-  Rails.cache.fetch('game_instance') { all.first }
-end
+  with_options dependent: :nullify do
+    has_one :rules
+    has_many :users, through: :teams
+  end
 
-def instance_is_singleton
-  singleton = Game.all.first
-  errors.add(:base, I18n.t('game.too_many')) if self != singleton && !singleton.nil?
-end
+  after_commit { Rails.cache.delete('game_instance') }
 
-def order_of_start_and_stop_date
-  errors.add(:base, I18n.t('game.date_mismatch')) unless start < stop
+  def self.instance
+    Rails.cache.fetch('game_instance') { all.first }
+  end
+
+  def instance_is_singleton
+    singleton = Game.all.first
+    errors.add(:base, I18n.t('game.too_many')) if self != singleton && !singleton.nil?
+  end
+
+  def order_of_start_and_stop_date
+    errors.add(:base, I18n.t('game.date_mismatch')) unless start < stop
+  end
 end
