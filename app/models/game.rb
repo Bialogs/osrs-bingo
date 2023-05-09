@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Game < ApplicationRecord
-  validates :title, :teams, :players_per_team, :start, :stop, presence: true
+  validates :title, :number_of_teams, :players_per_team, :start_datetime, :end_datetime, presence: true
 
-  validate :teams, :players_per_team, numericality: { greater_than_or_equal_to: 1 }
+  validates :number_of_teams, :players_per_team, numericality: { greater_than_or_equal_to: 1 }
 
   validate :instance_is_singleton, :order_of_start_and_stop_date
 
@@ -29,6 +29,6 @@ class Game < ApplicationRecord
   end
 
   def order_of_start_and_stop_date
-    errors.add(:base, I18n.t('game.date_mismatch')) unless start < stop
+    errors.add(:base, I18n.t('game.date_mismatch')) unless start_datetime < end_datetime
   end
 end

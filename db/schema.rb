@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_09_041919) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_09_043954) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -74,12 +74,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_09_041919) do
     t.string "discord_url"
     t.string "video_url"
     t.string "twitter_url"
-    t.integer "teams"
+    t.integer "number_of_teams"
     t.integer "players_per_team"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
   end
 
   create_table "rules", force: :cascade do |t|
