@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_064528) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_09_041919) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -54,11 +54,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_064528) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_challenges_on_game_id"
   end
 
   create_table "completed_challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "challenge_id"
+    t.integer "user_id"
+    t.integer "team_id"
+    t.index ["challenge_id"], name: "index_completed_challenges_on_challenge_id"
+    t.index ["team_id"], name: "index_completed_challenges_on_team_id"
+    t.index ["user_id"], name: "index_completed_challenges_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -78,12 +86,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_064528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_rules_on_game_id"
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_teams_on_game_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,6 +108,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_064528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "twitch_name"
+    t.integer "team_id"
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
