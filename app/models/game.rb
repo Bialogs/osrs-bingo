@@ -8,12 +8,12 @@ class Game < ApplicationRecord
   validate :instance_is_singleton, :order_of_start_and_stop_date
 
   with_options dependent: :destroy do
-    has_many :challenges, inverse_of: :game, foreign_key: 'game_id'
+    has_many :challenges
     has_many :teams
   end
 
   with_options dependent: :nullify do
-    has_one :rules
+    has_one :rule, class_name: "rules"
     has_many :users, through: :teams
   end
 
