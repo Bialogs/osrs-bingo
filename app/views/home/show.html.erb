@@ -1,6 +1,19 @@
-<%- if Current.user %>
-  <p>Hi <%= Current.user.first_name %></p>
-  <%= link_to "Log Out", log_out_path %>
-<%- else %>
-  <%= button_to "Sign In", "/auth/google_oidc", data: { turbo: false } %>
-<%- end %>
+<div class="container text-center mt-5">
+  <h2 id="countdown" class="mb-5">Countdown placeholder</h2>
+
+  <div class="embed-responsive embed-responsive-16by9 mb-5">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/your_youtube_video_id" allowfullscreen></iframe>
+  </div>
+
+  <div class="social-links mb-5">
+    <a href="#" class="btn btn-secondary">Discord</a>
+    <a href="#" class="btn btn-secondary">Twitter</a>
+    <a href="#" class="btn btn-secondary">Game Rules</a>
+  </div>
+
+  <div class="prizes">
+    <h3 class="mb-3">First Place Prize: ...</h3>
+    <h3 class="mb-3">Second Place Prize: ...</h3>
+    <h3 class="mb-3">Third Place Prize: ...</h3>
+  </div>
+</div>
