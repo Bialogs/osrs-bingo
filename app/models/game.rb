@@ -13,7 +13,7 @@ class Game < ApplicationRecord
   end
 
   with_options dependent: :nullify do
-    has_one :rule, class_name: "rules"
+    has_one :rule, class_name: 'rules'
     has_many :users, through: :teams
   end
 

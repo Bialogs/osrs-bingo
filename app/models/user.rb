@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   validates :first_name, :last_name, :email, presence: true
-  validates :email, uniqueness: {case_sensitive: false}
+  validates :email, uniqueness: { case_sensitive: false }
 
   with_options dependent: :destroy do
     has_many :completed_challenges

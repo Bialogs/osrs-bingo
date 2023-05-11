@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddChallengeToCompletedChallenge < ActiveRecord::Migration[7.0]
   def change
     add_reference :completed_challenges, :challenge

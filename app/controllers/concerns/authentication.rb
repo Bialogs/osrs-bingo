@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Authentication
   extend ActiveSupport::Concern
 
@@ -14,8 +16,8 @@ module Authentication
   def authenticate
     authenticated_user = User.find_by(id: session[:user_id])
 
-    if authenticated_user
-      Current.user = authenticated_user
-    end
+    return unless authenticated_user
+
+    Current.user = authenticated_user
   end
 end

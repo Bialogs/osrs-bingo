@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def authenticate_user!
-    unless Current.user
-      redirect_to root_path, alert: "You need to sign in before continuing."
-    end
+    return if Current.user
+
+    redirect_to root_path, alert: 'You need to sign in before continuing.'
   end
 end

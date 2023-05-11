@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :rule do
-    content { "<p>In a <i>million</i> stars!</p>" }
+    content { '<p>In a <i>million</i> stars!</p>' }
   end
 end

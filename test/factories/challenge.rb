@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :challenge do
     points { 1 }
-    title { 'challenge 1'}
+    title { 'challenge 1' }
   end
 end

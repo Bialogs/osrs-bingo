@@ -8,7 +8,7 @@ FactoryBot.define do
     twitter_url { 'game_twitter' }
     number_of_teams { 10 }
     players_per_team { 5 }
-    start_datetime { DateTime.now.utc}
-    end_datetime { start_datetime + 30.days}
+    start_datetime { DateTime.now.utc }
+    end_datetime { start_datetime + 30.days }
   end
 end

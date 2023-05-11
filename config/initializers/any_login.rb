@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if defined?(AnyLogin)
   AnyLogin.setup do |config|
     config.enabled = Rails.env.development?
